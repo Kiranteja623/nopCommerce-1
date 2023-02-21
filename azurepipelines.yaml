@@ -1,0 +1,20 @@
+pool:
+  name: Default
+trigger:
+  - develop
+steps:
+  - script: sudo add-apt-repository universe
+  - script: sudo apt-get install apt-transport-https
+  - script: sudo apt-get update
+  - script: sudo apt-get install dotnet-sdk-6.0 -y
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet restore'
+    inputs:
+      command: 'restore'
+      feedsToUse: 'select'
+      projects: src/NopCommerce.sln
+      includeNuGetOrg: true
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: build
+      projects: src/NopCommerce.sln
