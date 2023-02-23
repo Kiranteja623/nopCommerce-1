@@ -7,7 +7,7 @@ steps:
   - script: sudo dpkg -i packages-microsoft-prod.deb
   - script: rm packages-microsoft-prod.deb
   - script: sudo apt update
-  - script: sudo apt-get install -y dotnet-sdk-6.0
+  - script: sudo apt-get install -y dotnet-sdk-7.0
   - task: DotNetCoreCLI@2
     displayName: 'dotnet restore'
     inputs:
